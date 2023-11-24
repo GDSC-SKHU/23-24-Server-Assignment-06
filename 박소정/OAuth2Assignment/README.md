@@ -44,7 +44,6 @@
 > 로그인 구현 -> 글 작성 API 구현
 
 -[ ] config
-    -[ ] JwtSecurityConfig
     -[ ] SecurityConfig
 
 -[ ] controller
@@ -72,7 +71,7 @@
     -[ ] TokenProvider
 
 -[ ] repository
-    -[ ] UserRepository
+    -[x] UserRepository
     -[ ] writingRepository
 
 -[ ] service

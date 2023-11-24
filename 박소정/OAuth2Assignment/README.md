@@ -41,43 +41,45 @@
 ---
 ## 구현할 기능 목록(아직 잘 몰라서 만들면서 필요한 사항 추가할 예정)
 
-- config
-    - JwtSecurityConfig
-    - SecurityConfig
+> 로그인 구현 -> 글 작성 API 구현
 
-- controller
-    - AuthController
-        - googleCallback()
-        - loginOrSignup()
-    - WritingController
+-[ ] config
+    -[ ] JwtSecurityConfig
+    -[ ] SecurityConfig
 
-- domain
-    - Role: 권한
-    - User: 사용자
-    - writing: 글 작성
+-[ ] controller
+    -[ ] AuthController
+        -[ ] googleCallback()
+        -[ ] loginOrSignup()
+    -[ ] WritingController
 
-- dto
-    - UserRequestDto
-    - UserResponseDto
-    - TokenDto: AccessToken 값 전달
-    - UserInfoDto: 구글 AccessToken으로 사용자의 정보 받을 때 사용
-    - WritingDto
+-[ ] domain
+    -[x] Role: 권한
+    -[x] User: 사용자
+    -[ ] writing: 글 작성
 
-- jwt
-    - JwtAccessDeniedHandler
-    - JwtAuthenticationEntryPoint
-    - JwtFilter
-    - TokenProvider
+-[ ] dto
+    -[ ] UserRequestDto
+    -[ ] UserResponseDto
+    -[ ] TokenDto: AccessToken 값 전달
+    -[ ] UserInfoDto: 구글 AccessToken으로 사용자의 정보 받을 때 사용
+    -[ ] WritingDto
 
-- repository
-    - UserRepository
-    - writingRepository
+-[ ] jwt
+    -[ ] JwtAccessDeniedHandler
+    -[ ] JwtAuthenticationEntryPoint
+    -[ ] JwtFilter
+    -[ ] TokenProvider
 
-- service
-    - AuthService
-        - getGoogleAccessToken()
-        - loginOrSignUp()
-        - getUserInfo()
-    - writingService
-        - create
-        - read
+-[ ] repository
+    -[ ] UserRepository
+    -[ ] writingRepository
+
+-[ ] service
+    -[ ] AuthService
+        -[ ] getGoogleAccessToken()
+        -[ ] loginOrSignUp()
+        -[ ] getUserInfo()
+    -[ ] writingService
+        -[ ] create
+        -[ ] read

@@ -21,7 +21,7 @@ spring:
           google:
             client-id: ${GOOGLE_CLIENT_ID}
             client-secret: ${GOOGLE_CLIENT_SECRET}
-            scope: email, profile
+            scope: email, profile # 공식 사이트에서 필요없다고 써 있어서 삭제할까 고민 중
 jwt:
   secret: ${JWT_SECRET}
   expiration: ${ACCESS_TOKEN_VALIDITY_IN_MILLISECONDS}

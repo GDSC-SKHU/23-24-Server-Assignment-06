@@ -44,7 +44,7 @@
 > 로그인 구현 -> 글 작성 API 구현
 
 -[ ] config
-    -[ ] SecurityConfig
+    -[x] OAuth2LoginSecurityConfig
 
 -[ ] controller
     -[ ] AuthController

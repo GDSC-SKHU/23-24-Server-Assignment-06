@@ -11,6 +11,7 @@ import java.net.URI;
 import java.security.Principal;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -23,8 +24,10 @@ import org.springframework.web.client.RestTemplate;
 public class AuthService {
 
     private final String GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
-    private final String GOOGLE_CLIENT_ID = "172803793056-g3i64tbu8oj6ht35lrf5mefovodbckts.apps.googleusercontent.com";
-    private final String GOOGLE_CLIENT_SECRET = "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";
+    @Value("${client_id}")
+    private String google_client_id;
+    @Value("${client_secret}")
+    private String google_client_secret;
     private final String GOOGLE_REDIRECT_URI = "http://localhost:8080/api/oauth2/callback/google";
 
     private final UserRepository userRepository;
@@ -35,8 +38,8 @@ public class AuthService {
         Map<String, String> params = Map.of(
                 "code", code,
                 "scope", "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email",
-                "client_id", GOOGLE_CLIENT_ID,
-                "client_secret", GOOGLE_CLIENT_SECRET,
+                "client_id", google_client_id,
+                "client_secret", google_client_secret,
                 "redirect_uri", GOOGLE_REDIRECT_URI,
                 "grant_type", "authorization_code"
         );

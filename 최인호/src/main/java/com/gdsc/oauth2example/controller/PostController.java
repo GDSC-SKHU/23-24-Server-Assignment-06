@@ -28,13 +28,13 @@ public class PostController {
         return new ResponseEntity<>(postService.getPostList(),HttpStatus.OK);
     }
 
-    @PutMapping("/update")
+    @PutMapping("")
     public ResponseEntity<String> updatePost(@RequestBody PostResponseDto postDto){
         postService.updatePost(postDto);
         return new ResponseEntity<>("수정 완료",HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("")
     public ResponseEntity<String> deletePost(@RequestBody PostResponseDto postDto){
         postService.deletePost(postDto);
         return new ResponseEntity<>("삭제 완료",HttpStatus.OK);

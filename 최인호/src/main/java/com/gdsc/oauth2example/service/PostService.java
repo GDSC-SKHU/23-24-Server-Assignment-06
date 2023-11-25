@@ -27,7 +27,7 @@ public class PostService {
                 .author(requestDTO.getAuthor())
                 .title(requestDTO.getTitle())
                 .content(requestDTO.getContent())
-                .user(user) // 유저 값이 왜 들어가지 않을까?
+                .user(user)
                 .build();
         postRepository.save(post);
 
@@ -43,7 +43,7 @@ public class PostService {
                     .id(post.getId())
                     .author(post.getAuthor())
                     .content(post.getContent())
-                    .userId(post.getUser().getId()) //user가 잘 저장이 안 된 듯..
+                    .userId(post.getUser().getId())
                     .title(post.getTitle())
                     .createdDate(post.getCreatedDate()).build();
             postDtoList.add(postDto);

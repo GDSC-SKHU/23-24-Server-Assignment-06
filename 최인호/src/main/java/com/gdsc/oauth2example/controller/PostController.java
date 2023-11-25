@@ -16,8 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
-    //@PathVariable
-    //@RequestParam
+
     @PostMapping("/save")
     public ResponseEntity<String> savePost(Principal principal, @RequestBody PostRequestDto requestDto) {
         postService.savePost(Long.parseLong(principal.getName()), requestDto);

@@ -61,7 +61,7 @@
     -[ ] UserRequestDto
     -[ ] UserResponseDto
     -[x] Token: ~~AccessToken~~ -> IdToken 값 전달, OpenID Connect(OIDC)로 도전..!
-    -[ ] UserInfoDto: 구글 AccessToken으로 사용자의 정보 받을 때 사용
+    -[x] UserInfo: ~~AccessToken~~ -> IdToken으로 사용자의 정보 받을 때 사용
     -[ ] WritingDto
 
 -[ ] jwt

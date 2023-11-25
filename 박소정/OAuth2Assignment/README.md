@@ -44,7 +44,7 @@
 > 로그인 구현 -> 글 작성 API 구현
 
 -[ ] config
-    -[x] OAuth2LoginSecurityConfig
+    -[ ] SecurityConfig
 
 -[ ] controller
     -[ ] AuthController
@@ -60,8 +60,8 @@
 -[ ] dto
     -[ ] UserRequestDto
     -[ ] UserResponseDto
-    -[x] Token: ~~AccessToken~~ -> IdToken 값 전달, OpenID Connect(OIDC)로 도전..!
-    -[x] UserInfo: ~~AccessToken~~ -> IdToken으로 사용자의 정보 받을 때 사용
+    -[x] Token: AccessToken 값 전달, OpenID Connect(OIDC)로 ~~도전..!~~ -> 어려워서 일단 포기, 나중에 다시 도전하겠습니다...
+    -[x] UserInfo: AccessToken으로 사용자의 정보 받을 때 사용
     -[ ] WritingDto
 
 -[ ] jwt
@@ -69,6 +69,11 @@
     -[ ] JwtAuthenticationEntryPoint
     -[ ] JwtFilter
     -[ ] TokenProvider
+      - [ ] creatToken(): JWT 생성
+      - [ ] getAuthentication(): JWT에서 인증 정보 추출
+      - [ ] resolveToken(): HTTP 요청에서 JWT를 추출
+      - [ ] validatToken(): JWT 유효성 검증
+      - [ ] paseClaims():  JWT의 클레임(토큰에 담긴 데이터) 파싱
 
 -[ ] repository
     -[x] UserRepository

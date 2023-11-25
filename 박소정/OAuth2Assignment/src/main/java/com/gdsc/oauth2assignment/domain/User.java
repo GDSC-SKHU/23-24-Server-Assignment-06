@@ -29,9 +29,6 @@ public class User {
     @Column(name = "USER_EMAIL", nullable = false)
     private String email;
 
-    @Column(name = "USER_SUB", nullable = false, unique = true)
-    private String sub;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "USER_ROLE", nullable = false)
     private Role role;

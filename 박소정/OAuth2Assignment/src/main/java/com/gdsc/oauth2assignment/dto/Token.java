@@ -9,6 +9,6 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class Token {
-    @SerializedName("id_token")
-    private String idToken;
+    @SerializedName("access_token")
+    private String accessToken;
 }

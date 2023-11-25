@@ -69,7 +69,7 @@
     -[ ] JwtAuthenticationEntryPoint
     -[ ] JwtFilter
     -[ ] TokenProvider
-      - [ ] creatToken(): JWT 생성
+      - [x] creatToken(): JWT 생성
       - [ ] getAuthentication(): JWT에서 인증 정보 추출
       - [ ] resolveToken(): HTTP 요청에서 JWT를 추출
       - [ ] validatToken(): JWT 유효성 검증

@@ -1,9 +1,12 @@
 package com.gdsc.oauth2assignment.jwt;
 
+import com.gdsc.oauth2assignment.domain.User;
 import com.gdsc.oauth2assignment.dto.Token;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import java.util.Base64.Decoder;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.security.Key;
@@ -17,5 +20,22 @@ public class TokenProvider {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey); // 비밀키를 디코딩
         this.key = Keys.hmacShaKeyFor(keyBytes); // 디코딩한 걸, 암호화 알고리즘을 사용하는 키로 변환
         this.accessTokenValidityTime = accessTokenValidityTime;
+    }
+
+    public Token CreatToken(User user) {
+        long nowTime = (new Date()).getTime();
+
+        Date tokenExpiredTime = new Date(nowTime + accessTokenValidityTime);
+
+        String accessToken = Jwts.builder()
+                .setSubject(user.getId().toString())
+                .claim("auth", user.getRole().name())
+                .setExpiration(tokenExpiredTime)
+                .signWith(key, SignatureAlgorithm.HS256) // 서명
+                .compact(); // 액세스 토큰 생성
+
+        return Token.builder()
+                .accessToken(accessToken)
+                .build(); // Token 객체로 반환
     }
 }

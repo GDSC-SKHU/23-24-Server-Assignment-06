@@ -35,7 +35,7 @@ public class TokenProvider {
         this.accessTokenValidityTime = accessTokenValidityTime;
     }
 
-    public Token CreatToken(User user) {
+    public Token createToken(User user) {
         long nowTime = (new Date()).getTime();
 
         Date tokenExpiredTime = new Date(nowTime + accessTokenValidityTime);

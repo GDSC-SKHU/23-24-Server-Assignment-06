@@ -1,5 +1,7 @@
 package com.gdsc.oauth2assignment.service;
 
+import com.gdsc.oauth2assignment.domain.Role;
+import com.gdsc.oauth2assignment.domain.User;
 import com.gdsc.oauth2assignment.dto.Token;
 import com.gdsc.oauth2assignment.dto.UserInfo;
 import com.gdsc.oauth2assignment.jwt.TokenProvider;
@@ -52,6 +54,24 @@ public class AuthService {
         }
 
         throw new RuntimeException("구글 엑세스 토큰을 가져오는데 실패했습니다.");
+    }
+
+    public Token loginOrSignUp(String googleAccessToken) {
+        UserInfo userInfo = getUserInfo(googleAccessToken);
+
+        if (!userInfo.getVerifiedEmail()) {
+            throw new RuntimeException("이메일 인증이 되지 않은 유저입니다.");
+        }
+
+        User user = userRepository.findByEmail(userInfo.getEmail()).orElseGet(() ->
+                userRepository.save(User.builder()
+                        .email(userInfo.getEmail())
+                        .name(userInfo.getName())
+                        .role(Role.ROLE_USER)
+                        .build()) // 등록되어 있지 않으면 새롭게 생성하고 정보 가져옴
+        );
+
+        return tokenProvider.createToken(user);
     }
 
     public UserInfo getUserInfo(String accessToken) {

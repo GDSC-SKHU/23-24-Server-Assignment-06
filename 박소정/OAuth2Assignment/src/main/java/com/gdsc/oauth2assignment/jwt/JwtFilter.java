@@ -17,7 +17,8 @@ public class JwtFilter extends GenericFilterBean {
     private final TokenProvider tokenProvider;
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         String token = tokenProvider.resolveToken((HttpServletRequest) request);
 
         if (StringUtils.hasText(token) && tokenProvider.validateToken(token)) {

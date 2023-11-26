@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable).logout(AbstractHttpConfigurer::disable) // 폼 로그인, 로그아웃 비활성화
                 .authorizeHttpRequests(
                         authorizeRequests -> authorizeRequests.requestMatchers("/login/oauth2/**").permitAll()
-                                .requestMatchers("후에 구현 할 글쓰기 API 넣기").authenticated().anyRequest().authenticated())
+                                .requestMatchers("/text/**").authenticated().anyRequest().authenticated())
                 .cors(cors -> cors.configurationSource(configurationSource()))
                 .addFilterBefore(new JwtFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class).build();
     }

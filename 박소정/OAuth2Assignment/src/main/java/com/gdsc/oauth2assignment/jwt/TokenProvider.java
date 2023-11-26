@@ -64,11 +64,13 @@ public class TokenProvider {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList()); // 쉼표로 권한이 분리되는데, 권한이 ROLE_USER 밖에 없어서 하나밖에 없을 것으로 예상
 
-        return new UsernamePasswordAuthenticationToken(claims.getSubject(), "", authorities); // subject, 비밀번호, 권한. 비밀번호 사용 안하니까 빈 문자열로
+        return new UsernamePasswordAuthenticationToken(claims.getSubject(), "",
+                authorities); // subject, 비밀번호, 권한. 비밀번호 사용 안하니까 빈 문자열로
     }
 
     public String resolveToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization"); // HTTP 요청 헤더의 Authorization 파라미터의 값을 읽어들이고, bearerToken 변수에 저장(Bearer를 접두어로)
+        String bearerToken = request.getHeader(
+                "Authorization"); // HTTP 요청 헤더의 Authorization 파라미터의 값을 읽어들이고, bearerToken 변수에 저장(Bearer를 접두어로)
 
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) { // Bearer가 있는지와 Bearer로 시작하는지 확인
             return bearerToken.substring(7); // Bearer를 제외하고 반환

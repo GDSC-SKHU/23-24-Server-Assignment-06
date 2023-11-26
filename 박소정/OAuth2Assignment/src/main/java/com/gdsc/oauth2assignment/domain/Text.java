@@ -34,7 +34,7 @@ public class Text {
     private User user;
 
     @Builder
-    private Text(String title,String content, User user) {
+    private Text(String title, String content, User user) {
         this.title = title;
         this.content = content;
         this.user = user;

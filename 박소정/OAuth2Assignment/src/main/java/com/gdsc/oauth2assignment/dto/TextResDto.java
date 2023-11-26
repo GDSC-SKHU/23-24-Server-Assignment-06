@@ -5,13 +5,13 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
 public class TextResDto {
     private Long id;
     private String title;
     private String content;
     private String writer;
 
+    @Builder
     public TextResDto(Text text) {
         this.id = text.getId();
         this.title = text.getTitle();

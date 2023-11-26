@@ -67,7 +67,7 @@
 -[ ] jwt
     -[ ] JwtAccessDeniedHandler
     -[ ] JwtAuthenticationEntryPoint
-    -[ ] JwtFilter
+    -[x] JwtFilter
     -[x] TokenProvider
       - [x] creatToken(): JWT 생성
       - [x] getAuthentication(): JWT에서 인증 정보 추출

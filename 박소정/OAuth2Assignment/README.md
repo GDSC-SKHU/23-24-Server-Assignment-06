@@ -77,10 +77,10 @@
     -[x] TextRepository
 
 -[ ] service
-    -[ ] AuthService
+    -[x] AuthService
         -[x] getGoogleAccessToken()
         -[x] loginOrSignUp()
         -[x] getUserInfo()
-    -[ ] writingService
-        -[ ] create
+    -[ ] TextService
+        -[x] create
         -[ ] read

@@ -52,10 +52,10 @@
         -[x] loginOrSignup()
     -[ ] WritingController
 
--[ ] domain
+-[x] domain
     -[x] Role: 권한
     -[x] User: 사용자
-    -[ ] writing: 글 작성
+    -[x] Text: 글 작성
 
 -[ ] dto
     -[ ] UserRequestDto

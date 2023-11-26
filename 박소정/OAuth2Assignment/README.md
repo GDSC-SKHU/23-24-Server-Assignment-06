@@ -71,9 +71,9 @@
     -[ ] TokenProvider
       - [x] creatToken(): JWT 생성
       - [ ] getAuthentication(): JWT에서 인증 정보 추출
-      - [ ] resolveToken(): HTTP 요청에서 JWT를 추출
+      - [x] resolveToken(): HTTP 요청에서 JWT를 추출
       - [ ] validatToken(): JWT 유효성 검증
-      - [x] paseClaims():  JWT의 클레임(토큰에 담긴 데이터) 파싱
+      - [x] parseClaims():  JWT의 클레임(토큰에 담긴 데이터) 파싱
 
 -[ ] repository
     -[x] UserRepository

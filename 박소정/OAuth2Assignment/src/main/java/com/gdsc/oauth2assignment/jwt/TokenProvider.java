@@ -8,10 +8,13 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletRequest;
 import java.security.Key;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
 @Component
 public class TokenProvider {
     private final Key key; // JWT를 암호화하기 위한 비밀 키를 저장, Key는 인터페이스로 구체적인 키 값이 할당됨.
@@ -39,6 +42,16 @@ public class TokenProvider {
         return Token.builder()
                 .accessToken(accessToken)
                 .build(); // Token 객체로 반환
+    }
+
+    public String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization"); // HTTP 요청 헤더의 Authorization 파라미터의 값을 읽어들이고, bearerToken 변수에 저장(Bearer를 접두어로)
+
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) { // Bearer가 있는지와 Bearer로 시작하는지 확인
+            return bearerToken.substring(7); // Bearer를 제외하고 반환
+        }
+
+        return null;
     }
 
     private Claims parseClaims(String accessToken) {

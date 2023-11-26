@@ -1,6 +1,5 @@
 package com.gdsc.oauth2example.domain;
 
-import com.gdsc.oauth2example.dto.PostRequestDto;
 import com.gdsc.oauth2example.dto.PostResponseDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,11 +12,12 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Post {
     @Id
     @Column(name = "POST_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postId;
+    private Long id;
 
     @Column(name = "POST_TITLE", nullable = false)
     private String title;
@@ -25,26 +25,15 @@ public class Post {
     @Column(name = "POST_CONTENT", nullable = false)
     private String content;
 
-    @Column(name = "POST_AUTHOR")
-    private String author;
-
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
 
     @Builder
-    public Post(String title, String content, String author, User user){
+    private Post(String title, String content, User user){
         this.title = title;
         this.content = content;
-        this.author = author;
         this.user = user;
     }
 
-    public PostResponseDto toDto(){
-        PostResponseDto postResponseDto = PostResponseDto.builder()
-                .title(this.getTitle())
-                .content(this.getContent())
-                .build();
-        return postResponseDto;
-    }
 }

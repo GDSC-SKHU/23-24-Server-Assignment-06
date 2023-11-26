@@ -8,6 +8,7 @@ import com.gdsc.oauth2example.dto.UserInfo;
 import com.gdsc.oauth2example.repository.UserRepository;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,8 +22,10 @@ import java.util.Map;
 public class AuthService {
 
     private final String GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
-    private final String GOOGLE_CLIENT_ID = "122647304286-s6tfn1qq5qhhmpr1lguakj8cl0linmd6.apps.googleusercontent.com";
-    private final String GOOGLE_CLIENT_SECRET = "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";
+    @Value("${CLIENT_ID}")
+    private String GOOGLE_CLIENT_ID;
+    @Value("${CLIENT_SECRET}")
+    private String GOOGLE_CLIENT_SECRET;
     private final String GOOGLE_REDIRECT_URI = "http://localhost:8080/api/oauth2/callback/google";
 
     private final UserRepository userRepository;

@@ -6,6 +6,7 @@ import com.gdsc.oauth2assignment.dto.TextResDto;
 import com.gdsc.oauth2assignment.dto.TextSaveReqDto;
 import com.gdsc.oauth2assignment.repository.TextRepository;
 import com.gdsc.oauth2assignment.repository.UserRepository;
+import java.security.Principal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +21,10 @@ public class TextService {
     }
 
     @Transactional
-    public String createText(TextSaveReqDto requestDto, String email) {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다."));
+    public String createText(TextSaveReqDto requestDto, Principal principal) {
+        Long userId = Long.parseLong(principal.getName());
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
         Text text = requestDto.toEntity(user);
         textRepository.save(text);
         return "저장 성공!";

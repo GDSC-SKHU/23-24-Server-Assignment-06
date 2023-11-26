@@ -6,10 +6,10 @@ import lombok.Getter;
 
 @Getter
 public class TextResDto {
-    private Long id;
-    private String title;
-    private String content;
-    private String writer;
+    private final Long id;
+    private final String title;
+    private final String content;
+    private final String writer;
 
     @Builder
     public TextResDto(Text text) {

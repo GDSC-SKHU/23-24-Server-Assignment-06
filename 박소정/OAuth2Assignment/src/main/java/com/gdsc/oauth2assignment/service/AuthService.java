@@ -27,6 +27,7 @@ public class AuthService {
     private final TokenProvider tokenProvider;
     private final String GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
     private final String GOOGLE_REDIRECT_URI = "http://localhost:8080/login/oauth2/code/google";
+
     public AuthService(@Value("${spring.security.oauth2.client.registration.google.client-id}") String googleClientId,
                        @Value("${spring.security.oauth2.client.registration.google.client-secret}") String googleClientSecret,
                        UserRepository userRepository,

@@ -26,7 +26,7 @@ public class TokenProvider {
     private final long accessTokenValidityTime;
 
     public TokenProvider(@Value("${jwt.secret}") String secretKey,
-                         @Value("100000") long accessTokenValidityTime) {
+                         @Value("${JWT_ACCESS_TOKEN_VALIDITY_IN_MILLISECONDS}") long accessTokenValidityTime) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
         this.accessTokenValidityTime = accessTokenValidityTime;

@@ -8,7 +8,9 @@ import com.gdsc.skhu.googleloginbulletinboard.jwt.TokenProvider;
 import com.gdsc.skhu.googleloginbulletinboard.repository.UserRepository;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,24 +19,34 @@ import java.security.Principal;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 public class AuthService {
 
     private final String GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
-    private final String GOOGLE_CLIENT_ID = "53857130850-1oel04p9cq24c4rpq9t4vpv7rpb1emof.apps.googleusercontent.com";
-    private final String GOOGLE_CLIENT_SECRET = "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";
+//    private final String GOOGLE_CLIENT_ID = "53857130850-1oel04p9cq24c4rpq9t4vpv7rpb1emof.apps.googleusercontent.com";
+//    private final String GOOGLE_CLIENT_SECRET = "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";
+    private final String googleClientId;
+    private final String googleClientSecret;
     private final String GOOGLE_REDIRECT_URI = "http://localhost:8080/api/oauth2/callback/google";
 
     private final UserRepository userRepository;
     private final TokenProvider tokenProvider;
+
+    public AuthService(@Value("${GOOGLE_CLIENT_ID}") String googleClientId,
+                       @Value("${GOOGLE_CLIENT_SECRET}") String googleClientSecret,
+                       UserRepository userRepository, TokenProvider tokenProvider) {
+        this.googleClientId = googleClientId;
+        this.googleClientSecret = googleClientSecret;
+        this.userRepository = userRepository;
+        this.tokenProvider = tokenProvider;
+    }
 
     public String getGoogleAccessToken(String code) {
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> params = Map.of(
                 "code", code,
                 "scope", "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email",
-                "client_id", GOOGLE_CLIENT_ID,
-                "client_secret", GOOGLE_CLIENT_SECRET,
+                "client_id", googleClientId,
+                "client_secret", googleClientSecret,
                 "redirect_uri", GOOGLE_REDIRECT_URI,
                 "grant_type", "authorization_code"
         );

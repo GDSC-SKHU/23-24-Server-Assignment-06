@@ -21,9 +21,9 @@ public class PostService {
 
     // CREATE
     @Transactional
-    public String createPost(Long userId, PostRequest requestDto) {
+    public void createPost(Long userId, PostRequest requestDto) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 사용자 ID 입니다."));
+                .orElseThrow();
 
         Post post = Post.builder()
                 .title(requestDto.getTitle())
@@ -32,7 +32,6 @@ public class PostService {
                 .user(user)
                 .build();
         postRepository.save(post);
-        return "게시 성공";
     }
 
     // READ

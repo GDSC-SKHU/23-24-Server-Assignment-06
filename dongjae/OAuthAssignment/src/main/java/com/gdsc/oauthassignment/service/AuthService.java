@@ -8,10 +8,6 @@ import com.gdsc.oauthassignment.domain.user.SocialType;
 import com.gdsc.oauthassignment.domain.user.User;
 import com.gdsc.oauthassignment.exception.ErrorCode;
 import com.gdsc.oauthassignment.exception.model.NotFoundException;
-import com.gdsc.oauthassignment.oauth2.ClientRegistration;
-import com.gdsc.oauthassignment.oauth2.ClientRegistrationRepository;
-import com.gdsc.oauthassignment.oauth2.OAuth2Token;
-import com.gdsc.oauthassignment.oauth2.service.OAuth2Service;
 import com.gdsc.oauthassignment.oauth2.userInfo.OAuth2UserInfo;
 import com.gdsc.oauthassignment.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,16 +27,7 @@ public class AuthService {
     private final Duration TOKEN_EXPIRATION_TIME_REFRESH = Duration.ofDays(200); // 200일
 
     private final UserRepository userRepository;
-    private final ClientRegistrationRepository clientRegistrationRepository;
     public final RestTemplate restTemplate;
-
-    public SignInResponseDto login(String code, String provider, String state) {
-        ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId(provider);
-        OAuth2Service oAuth2Service = new OAuth2Service(restTemplate);
-        OAuth2Token oAuth2Token = oAuth2Service.getAccessToken(clientRegistration, code, state);
-        OAuth2UserInfo oAuth2UserInfo = oAuth2Service.getUserInfo(clientRegistration, oAuth2Token.getToken());
-        return signIn(oAuth2UserInfo, provider);
-    }
 
     @Transactional
     public SignInResponseDto signIn(OAuth2UserInfo oAuth2UserInfo, String provider) {

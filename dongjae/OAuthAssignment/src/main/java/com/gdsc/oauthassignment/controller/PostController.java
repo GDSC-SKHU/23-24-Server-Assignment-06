@@ -28,7 +28,7 @@ public class PostController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public BaseResponse<GetAllPostResponseDto> getAllGuestBookList(@UserId Long userId){
+    public BaseResponse<GetAllPostResponseDto> getAllPost(@UserId Long userId){
         final GetAllPostResponseDto data = postService.getAllPost(userId);
         return BaseResponse.success(SuccessCode.GET_ALL_GUESTBOOK_SUCCESS, data);
     }

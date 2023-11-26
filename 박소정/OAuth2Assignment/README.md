@@ -83,7 +83,7 @@
     -[ ] AuthService
         -[x] getGoogleAccessToken()
         -[ ] loginOrSignUp()
-        -[ ] getUserInfo()
+        -[x] getUserInfo()
     -[ ] writingService
         -[ ] create
         -[ ] read

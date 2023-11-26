@@ -22,15 +22,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthService {
 
-<<<<<<< HEAD
     private final String GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
     private final String GOOGLE_REDIRECT_URI = "http://localhost:8080/api/oauth2/callback/google";
-=======
     private final String GOOGLE_TOKEN_URL = "GOOGLE_TOKEN_URL";
-    private final String GOOGLE_CLIENT_ID = "GOOGLE_CLIENT_ID";
-    private final String GOOGLE_CLIENT_SECRET = "GOOGLE_CLIENT_SECRET";
     private final String GOOGLE_REDIRECT_URI = "GOOGLE_REDIRECT_URI";
->>>>>>> f39143240f747d5141cd06e0f145055f0aebe666
 
     @Value("${client_id}")
     private String GOOGLE_CLIENT_ID;

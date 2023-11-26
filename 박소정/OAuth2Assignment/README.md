@@ -72,9 +72,9 @@
       - [x] validateToken(): JWT 유효성 검증
       - [x] parseClaims():  JWT의 클레임(토큰에 담긴 데이터) 파싱
 
--[ ] repository
+-[x] repository
     -[x] UserRepository
-    -[ ] writingRepository
+    -[x] TextRepository
 
 -[ ] service
     -[ ] AuthService

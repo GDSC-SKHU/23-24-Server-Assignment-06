@@ -58,11 +58,10 @@
     -[x] Text: 글 작성
 
 -[ ] dto
-    -[ ] UserRequestDto
-    -[ ] UserResponseDto
     -[x] Token: AccessToken 값 전달, OpenID Connect(OIDC)로 ~~도전..!~~ -> 어려워서 일단 포기, 나중에 다시 도전하겠습니다...
     -[x] UserInfo: AccessToken으로 사용자의 정보 받을 때 사용
-    -[ ] WritingDto
+    -[ ] TextPostReqDto
+    -[ ] TextGetResDto
 
 -[ ] jwt
     -[ ] JwtAccessDeniedHandler

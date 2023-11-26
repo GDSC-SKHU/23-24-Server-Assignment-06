@@ -7,10 +7,8 @@ import com.gdsc.skhu.googleloginbulletinboard.dto.UserInfo;
 import com.gdsc.skhu.googleloginbulletinboard.jwt.TokenProvider;
 import com.gdsc.skhu.googleloginbulletinboard.repository.UserRepository;
 import com.google.gson.Gson;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,8 +20,6 @@ import java.util.Map;
 public class AuthService {
 
     private final String GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
-//    private final String GOOGLE_CLIENT_ID = "53857130850-1oel04p9cq24c4rpq9t4vpv7rpb1emof.apps.googleusercontent.com";
-//    private final String GOOGLE_CLIENT_SECRET = "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";
     private final String googleClientId;
     private final String googleClientSecret;
     private final String GOOGLE_REDIRECT_URI = "http://localhost:8080/api/oauth2/callback/google";

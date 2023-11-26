@@ -2,10 +2,9 @@ package com.gdsc.skhu.googleloginbulletinboard.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
+@Builder
 @Getter
-@Setter
 public class PostResponse {
     private Long postId;
     private String title;
@@ -13,7 +12,6 @@ public class PostResponse {
     private String writer;
     private Long userId;
 
-    @Builder
     public PostResponse(Long postId, String title, String content, String writer, Long userId) {
         this.postId = postId;
         this.title = title;

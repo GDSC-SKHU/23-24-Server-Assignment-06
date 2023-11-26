@@ -1,13 +1,11 @@
 package com.gdsc.skhu.googleloginbulletinboard.domain;
 
-import com.gdsc.skhu.googleloginbulletinboard.dto.PostRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
 @Builder
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {

@@ -2,6 +2,7 @@ package com.gdsc.oauth2assignment.service;
 
 import com.gdsc.oauth2assignment.domain.Text;
 import com.gdsc.oauth2assignment.domain.User;
+import com.gdsc.oauth2assignment.dto.TextResDto;
 import com.gdsc.oauth2assignment.dto.TextSaveReqDto;
 import com.gdsc.oauth2assignment.repository.TextRepository;
 import com.gdsc.oauth2assignment.repository.UserRepository;
@@ -25,5 +26,11 @@ public class TextService {
         Text text = requestDto.toEntity(user);
         textRepository.save(text);
         return "저장 성공!";
+    }
+
+    public TextResDto findTextById(Long id) {
+        Text text = textRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 글이 없습니다."));
+        return new TextResDto(text);
     }
 }

@@ -76,11 +76,11 @@
     -[x] UserRepository
     -[x] TextRepository
 
--[ ] service
+-[x] service
     -[x] AuthService
         -[x] getGoogleAccessToken()
         -[x] loginOrSignUp()
         -[x] getUserInfo()
-    -[ ] TextService
+    -[x] TextService
         -[x] create
-        -[ ] read
+        -[x] read

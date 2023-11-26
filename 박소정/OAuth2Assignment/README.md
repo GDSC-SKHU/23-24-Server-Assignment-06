@@ -60,12 +60,10 @@
 -[ ] dto
     -[x] Token: AccessToken 값 전달, OpenID Connect(OIDC)로 ~~도전..!~~ -> 어려워서 일단 포기, 나중에 다시 도전하겠습니다...
     -[x] UserInfo: AccessToken으로 사용자의 정보 받을 때 사용
-    -[ ] TextPostReqDto
-    -[ ] TextGetResDto
+    -[x] TextSaveReqDto
+    -[x] TextResDto
 
--[ ] jwt
-    -[ ] JwtAccessDeniedHandler
-    -[ ] JwtAuthenticationEntryPoint
+-[x] jwt
     -[x] JwtFilter
     -[x] TokenProvider
       - [x] creatToken(): JWT 생성

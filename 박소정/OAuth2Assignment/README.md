@@ -44,7 +44,7 @@
 > 로그인 구현 -> 글 작성 API 구현
 
 -[ ] config
-    -[x] SecurityConfig
+    -[x] SecurityConfig // 나중에 글 작성 API 추가하기
 
 -[ ] controller
     -[ ] AuthController
@@ -81,7 +81,7 @@
 
 -[ ] service
     -[ ] AuthService
-        -[ ] getGoogleAccessToken()
+        -[x] getGoogleAccessToken()
         -[ ] loginOrSignUp()
         -[ ] getUserInfo()
     -[ ] writingService

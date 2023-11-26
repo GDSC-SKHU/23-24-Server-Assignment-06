@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,7 +29,7 @@ public class TokenProvider {
     private final long accessTokenValidityTime; // 생성된 액세스 토큰의 유효 시간 저장
 
     public TokenProvider(@Value("${jwt.secret}") String secretKey, // yaml 설정 파일에서 값을 가져옴
-                         @Value("${ACCESS_TOKEN_VALIDITY_IN_MILLISECONDS}") long accessTokenValidityTime) {
+                         @Value("${jwt.expiration}") long accessTokenValidityTime) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey); // 비밀키를 디코딩
         this.key = Keys.hmacShaKeyFor(keyBytes); // 디코딩한 걸, 암호화 알고리즘을 사용하는 키로 변환
         this.accessTokenValidityTime = accessTokenValidityTime;

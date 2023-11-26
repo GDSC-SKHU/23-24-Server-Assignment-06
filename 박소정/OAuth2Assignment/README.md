@@ -47,9 +47,9 @@
     -[x] SecurityConfig // 나중에 글 작성 API 추가하기
 
 -[ ] controller
-    -[ ] AuthController
-        -[ ] googleCallback()
-        -[ ] loginOrSignup()
+    -[x] AuthController
+        -[x] googleCallback()
+        -[x] loginOrSignup()
     -[ ] WritingController
 
 -[ ] domain

@@ -21,8 +21,8 @@ import java.util.Map;
 public class AuthService {
 
     private final String GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
-    private final String GOOGLE_CLIENT_ID = <YOUR_CLIENT_ID>;
-    private final String GOOGLE_CLIENT_SECRET = <YOUR_CLIENT_SECRET>;
+    private final String GOOGLE_CLIENT_ID = "423313133523-lsvmq3shropd8m1eev4ncp9b7s9cl0vv.apps.googleusercontent.com" ;
+    private final String GOOGLE_CLIENT_SECRET = "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";
     private final String GOOGLE_REDIRECT_URI = "http://localhost:8080/api/oauth2/callback/google";
 
     private final UserRepository userRepository;

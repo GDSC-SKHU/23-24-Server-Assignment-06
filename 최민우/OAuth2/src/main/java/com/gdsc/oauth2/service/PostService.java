@@ -39,7 +39,6 @@ public class PostService {
         // PostRepository를 사용하여 게시글 조회
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("게시글을 찾을 수 없습니다."));
-
         return post.toDto();
     }
 }

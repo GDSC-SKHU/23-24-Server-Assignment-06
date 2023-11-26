@@ -8,7 +8,7 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:
@@ -17,5 +17,3 @@ spring:
 jwt:
   secret: ${JWT_SECRET}
   access-token-validity-in-milliseconds: ${JWT_SECOND}
-client-id: ${GOOGLE_CLIENT_ID}
-client-secret: ${GOOGLE_CLIENT_SECRET}

@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {
@@ -24,15 +23,15 @@ public class Post {
     @Column(name = "POST_CONTENT", nullable = false)
     private String content;
 
-    @Column(name = "POST_WRITER", nullable = false)
+    @Column(name = "POST_WRITER")
     private String writer;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     User user;
 
     @Builder
-    public Post(String title, String content, String writer, User user){
+    public Post(String title, String content, String writer, User user) {
         this.title = title;
         this.content = content;
         this.writer = writer;

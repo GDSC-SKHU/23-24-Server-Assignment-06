@@ -10,8 +10,16 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import java.security.Key;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -42,6 +50,21 @@ public class TokenProvider {
         return Token.builder()
                 .accessToken(accessToken)
                 .build(); // Token 객체로 반환
+    }
+
+    public Authentication getAuthentication(String accessToken) {
+        Claims claims = parseClaims(accessToken);
+
+        if (claims.get("auth") == null) {
+            throw new RuntimeException("권한 정보가 없는 토큰입니다.");
+        }
+        // 위 과정을 통과하면 권한 정보가 있는 토큰
+
+        Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get("auth").toString().split(","))
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList()); // 쉼표로 권한이 분리되는데, 권한이 ROLE_USER 밖에 없어서 하나밖에 없을 것으로 예상
+
+        return new UsernamePasswordAuthenticationToken(claims.getSubject(), "", authorities); // subject, 비밀번호, 권한. 비밀번호 사용 안하니까 빈 문자열로
     }
 
     public String resolveToken(HttpServletRequest request) {

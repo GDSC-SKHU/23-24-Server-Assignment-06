@@ -46,11 +46,11 @@
 -[ ] config
     -[x] SecurityConfig // 나중에 글 작성 API 추가하기
 
--[ ] controller
+-[x] controller
     -[x] AuthController
         -[x] googleCallback()
         -[x] loginOrSignup()
-    -[ ] WritingController
+    -[x] TextController
 
 -[x] domain
     -[x] Role: 권한

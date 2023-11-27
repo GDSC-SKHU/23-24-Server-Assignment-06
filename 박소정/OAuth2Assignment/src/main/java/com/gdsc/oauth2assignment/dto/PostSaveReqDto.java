@@ -1,18 +1,18 @@
 package com.gdsc.oauth2assignment.dto;
 
-import com.gdsc.oauth2assignment.domain.Text;
+import com.gdsc.oauth2assignment.domain.Post;
 import com.gdsc.oauth2assignment.domain.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class TextSaveReqDto {
+public class PostSaveReqDto {
     private String title;
     private String content;
 
-    public Text toEntity(User user) {
-        return Text.builder()
+    public Post toEntity(User user) {
+        return Post.builder()
                 .title(this.title)
                 .content(this.content)
                 .user(user)

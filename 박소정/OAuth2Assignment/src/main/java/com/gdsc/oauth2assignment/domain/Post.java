@@ -17,16 +17,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Text {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TEXT_ID")
+    @Column(name = "POST_ID")
     private Long id;
 
-    @Column(name = "TEXT_TITLE")
+    @Column(name = "POST_TITLE")
     private String title;
 
-    @Column(name = "TEXT_CONTENT")
+    @Column(name = "POST_CONTENT")
     private String content;
 
     @OneToOne
@@ -34,7 +34,7 @@ public class Text {
     private User user;
 
     @Builder
-    private Text(String title, String content, User user) {
+    private Post(String title, String content, User user) {
         this.title = title;
         this.content = content;
         this.user = user;

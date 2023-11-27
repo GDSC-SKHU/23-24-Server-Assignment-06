@@ -1,8 +1,8 @@
 package com.gdsc.oauth2assignment.controller;
 
-import com.gdsc.oauth2assignment.dto.TextResDto;
-import com.gdsc.oauth2assignment.dto.TextSaveReqDto;
-import com.gdsc.oauth2assignment.service.TextService;
+import com.gdsc.oauth2assignment.dto.PostResDto;
+import com.gdsc.oauth2assignment.dto.PostSaveReqDto;
+import com.gdsc.oauth2assignment.service.PostService;
 import java.security.Principal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("text")
-public class TextController {
+@RequestMapping("post")
+public class PostController {
 
-    private final TextService textService;
+    private final PostService postService;
 
     @PostMapping("/new")
-    public String createText(@RequestBody TextSaveReqDto reqDto, Principal principal) {
-        return textService.createText(reqDto, principal);
+    public String createPost(@RequestBody PostSaveReqDto reqDto, Principal principal) {
+        return postService.createPost(reqDto, principal);
     }
 
     @GetMapping("/{id}")
-    public TextResDto findTextById(@PathVariable Long id) {
-        return textService.findTextById(id);
+    public PostResDto findPostById(@PathVariable Long id) {
+        return postService.findPostById(id);
     }
 }

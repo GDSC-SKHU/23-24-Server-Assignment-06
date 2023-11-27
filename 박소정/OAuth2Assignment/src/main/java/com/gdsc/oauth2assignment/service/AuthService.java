@@ -90,10 +90,12 @@ public class AuthService {
         headers.set("Authorization", "Bearer " + accessToken);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        RequestEntity<Void> requestEntity = new RequestEntity<>(headers, HttpMethod.GET,
-                URI.create(url)); // HTTP GET 요청 객체
-        ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity,
-                String.class); // HTTP 요청을 보내고, 그 응답을 ResponseEntity 객체에 저장
+        RequestEntity<Void> requestEntity = new RequestEntity<>(
+                headers,
+                HttpMethod.GET,
+                URI.create(url)
+        ); // HTTP GET 요청 객체
+        ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity, String.class); // HTTP 요청을 보내고, 그 응답을 ResponseEntity 객체에 저장
 
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             String json = responseEntity.getBody();

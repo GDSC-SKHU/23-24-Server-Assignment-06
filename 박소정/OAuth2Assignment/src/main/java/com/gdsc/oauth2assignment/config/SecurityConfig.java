@@ -29,8 +29,10 @@ public class SecurityConfig {
                         sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .formLogin(AbstractHttpConfigurer::disable).logout(AbstractHttpConfigurer::disable) // 폼 로그인, 로그아웃 비활성화
                 .authorizeHttpRequests(
-                        authorizeRequests -> authorizeRequests.requestMatchers("/login/oauth2/**").permitAll()
-                                .requestMatchers("/post/**").authenticated().anyRequest().authenticated())
+                        authorizeRequests -> authorizeRequests
+                                .requestMatchers("/login/oauth2/code/google/**").permitAll()
+                                .requestMatchers("/post/**").hasAuthority("ROLE_ADMIN")
+                                .anyRequest().authenticated())
                 .cors(cors -> cors.configurationSource(configurationSource()))
                 .addFilterBefore(new JwtFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class).build();
     }

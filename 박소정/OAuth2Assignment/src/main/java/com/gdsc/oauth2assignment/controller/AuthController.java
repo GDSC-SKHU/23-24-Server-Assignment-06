@@ -20,6 +20,15 @@ public class AuthController {
         return loginOrSignup(googleAccessToken);
     }
 
+    @GetMapping("code/google/admin")
+    public Token googleAdminCallback(@RequestParam(name = "code") String code) {
+        String googleAccessToken = authService.getGoogleAdminAccessToken(code);
+        return adminLoginOrSignup(googleAccessToken);
+    }
+
+    public Token adminLoginOrSignup(String googleAccessToken) { return authService.adminLoginOrSignUp(googleAccessToken);
+    }
+
     public Token loginOrSignup(String googleAccessToken) {
         return authService.loginOrSignUp(googleAccessToken);
     }

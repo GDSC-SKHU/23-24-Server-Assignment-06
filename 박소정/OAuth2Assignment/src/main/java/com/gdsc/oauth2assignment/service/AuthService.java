@@ -27,6 +27,7 @@ public class AuthService {
     private final TokenProvider tokenProvider;
     private final String GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
     private final String GOOGLE_REDIRECT_URI = "http://localhost:8080/login/oauth2/code/google";
+    private final String GOOGLE_REDIRECT_URI_ADMIN = "http://localhost:8080/login/oauth2/code/google/admin";
 
     public AuthService(@Value("${spring.security.oauth2.client.registration.google.client-id}") String googleClientId,
                        @Value("${spring.security.oauth2.client.registration.google.client-secret}") String googleClientSecret,
@@ -63,6 +64,31 @@ public class AuthService {
         throw new RuntimeException("구글 엑세스 토큰을 가져오는데 실패했습니다.");
     }
 
+    public String getGoogleAdminAccessToken(String code) {
+        RestTemplate restTemplate = new RestTemplate(); //  HTTP 요청을 보내기 위한 RestTemplate 객체 생성
+        Map<String, String> params = Map.of(
+                "code", code,
+                "scope",
+                "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email",
+                "client_id", googleClientId,
+                "client_secret", googleClientSecret,
+                "redirect_uri", GOOGLE_REDIRECT_URI_ADMIN,
+                "grant_type", "authorization_code"
+        );
+
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(GOOGLE_TOKEN_URL, params, String.class);
+
+        if (responseEntity.getStatusCode().is2xxSuccessful()) {
+            String json = responseEntity.getBody();
+            Gson gson = new Gson();
+
+            return gson.fromJson(json, Token.class)
+                    .getAccessToken(); // 성공인 경우, 응답 바디에서 파싱하여 액세스 토큰 반환
+        }
+
+        throw new RuntimeException("구글 엑세스 토큰을 가져오는데 실패했습니다.");
+    }
+
     public Token loginOrSignUp(String googleAccessToken) {
         UserInfo userInfo = getUserInfo(googleAccessToken);
 
@@ -80,6 +106,25 @@ public class AuthService {
 
         return tokenProvider.createToken(user);
     }
+
+    public Token adminLoginOrSignUp(String googleAccessToken) {
+        UserInfo userInfo = getUserInfo(googleAccessToken);
+
+        if (!userInfo.getVerifiedEmail()) {
+            throw new RuntimeException("이메일 인증이 되지 않은 관리자입니다.");
+        }
+
+        User user = userRepository.findByEmail(userInfo.getEmail()).orElseGet(() ->
+                userRepository.save(User.builder()
+                        .email(userInfo.getEmail())
+                        .name(userInfo.getName())
+                        .role(Role.ROLE_ADMIN)
+                        .build()) // 등록되어 있지 않으면 새롭게 생성하고 정보 가져옴
+        );
+
+        return tokenProvider.createToken(user);
+    }
+
 
     public UserInfo getUserInfo(String accessToken) {
         RestTemplate restTemplate = new RestTemplate();

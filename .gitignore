@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 윈도우 사용자
 desktop.ini
 Thumbs.db
@@ -7,3 +8,6 @@ Thumbs.db
 .DS_Store
 .Spotlight-V100
 .Trashes
+=======
+.DS_Store
+>>>>>>> ed66988 (과제)
